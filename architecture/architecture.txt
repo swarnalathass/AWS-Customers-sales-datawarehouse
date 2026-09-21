@@ -1,0 +1,33 @@
+CUSTOMER & SALES DATA WAREHOUSE - AWS ARCHITECTURE
+
+Sources
+  |-- customers.csv
+  |-- products.csv
+  |-- orders.csv
+  `-- order_items.csv
+            |
+            v
+Amazon S3 - RAW ZONE
+            |
+            v
+AWS Glue Data Catalog + AWS Glue ETL
+            |
+            v
+PySpark Cleaning / Transformation
+  |-- deduplicate
+  |-- handle missing values
+  |-- standardize columns
+  |-- type conversion
+  `-- revenue calculation
+            |
+            v
+Amazon S3 - PROCESSED / ANALYTICS ZONE
+            |
+      +-----+------+
+      |            |
+      v            v
+  Athena       Redshift
+   SQL       Data Warehouse
+                  |
+                  v
+           Business Analytics
